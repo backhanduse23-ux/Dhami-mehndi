@@ -1,70 +1,158 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}Mehndi By Dhami{% endblock %}</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <meta name="description"
-        content="Professional Mehndi Artist in Surat. Bridal, Arabic, Modern Mehndi with Online Booking.">
+    <title>
+        {% block title %}
+            Mehndi By Dhami
+        {% endblock %}
+    </title>
 
-    <meta name="keywords"
-        content="Mehndi, Bridal Mehndi, Arabic Mehndi, Mehndi Artist, Surat Mehndi">
+    <meta
+        name="description"
+        content="Professional Mehndi Artist in Surat. Bridal, Arabic, Modern Mehndi with Online Booking."
+    >
 
-    <meta name="author" content="Mehndi By Dhami">
+    <meta
+        name="keywords"
+        content="Mehndi, Bridal Mehndi, Arabic Mehndi, Mehndi Artist, Surat Mehndi"
+    >
+
+    <meta
+        name="author"
+        content="Mehndi By Dhami"
+    >
+
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
 
     <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-    <!-- CSS -->
-<link rel="stylesheet" href="{% static 'website/css/hcss.css' %}?v=12">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    >
+
+
+    <!-- Main CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'website/css/hcss.css' %}?v=21"
+    >
+
+</head>
+
+
 <body>
 
+    <!-- ================= HEADER ================= -->
 
+    <header>
 
-    <!-- Header --><header>
+        <nav class="navbar">
 
-    <nav class="navbar">
-
-        <div class="logo">
-            <a href="{% url 'home' %}">Mehndi By Dhami</a>
-        </div>
-
-        <ul class="nav-links">
-    <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="/about/">About</a></li>
-    <li><a href="/services/">Services</a></li>
-    <li><a href="/gallery/">Gallery</a></li>
-    <li><a href="{% url 'booking' %}">Booking</a></li>
-    <li><a href="/track-booking/">Track Booking</a></li>
-    <li><a href="/contact/">Contact</a></li>
-</ul>
-
-        <div class="nav-right">
-
-            <button id="theme-btn">
-                <i class="fa-solid fa-moon"></i>
-            </button>
-
-            <a href="{% url 'booking' %}" class="book-btn">
-                Book Now
+            <a href="{% url 'home' %}" class="logo">
+                Mehndi By Dhami
             </a>
 
-        </div>
 
-    </nav>
+            <ul class="nav-links">
 
-</header>
+                <li>
+                    <a href="{% url 'home' %}">
+                        Home
+                    </a>
+                </li>
 
-    <!-- Main Content -->
+                <li>
+                    <a href="{% url 'about' %}">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'services' %}">
+                        Services
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'gallery' %}">
+                        Gallery
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'booking' %}">
+                        Booking
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'track_booking' %}">
+                        Track Booking
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'contact' %}">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <div class="nav-right">
+
+                <!-- Dark Mode Button -->
+
+                <button
+                    type="button"
+                    id="darkModeBtn"
+                    class="dark-mode-btn"
+                    aria-label="Toggle dark mode"
+                    title="Toggle dark mode"
+                >
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+
+                <a
+                    href="{% url 'booking' %}"
+                    class="book-btn"
+                >
+                    Book Now
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
     <main>
 
         {% block content %}
@@ -73,16 +161,23 @@
 
     </main>
 
-    <!-- WhatsApp -->
-    <a href="https://wa.me/919999999999"
-        target="_blank"
-        class="whatsapp">
 
-        <i class="fab fa-whatsapp"></i>
+    <!-- ================= WHATSAPP BUTTON ================= -->
+
+    <a
+        href="https://wa.me/919999999999"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="whatsapp"
+        aria-label="Contact on WhatsApp"
+    >
+
+        <i class="fa-brands fa-whatsapp"></i>
 
     </a>
 
-    <!-- Footer -->
+
+    <!-- ================= FOOTER ================= -->
 
     <footer>
 
@@ -90,36 +185,56 @@
 
             <div class="footer-box">
 
-                <h2>Mehndi By Dhami</h2>
+                <h2>
+                    Mehndi By Dhami
+                </h2>
 
                 <p>
-                    Professional Bridal & Arabic Mehndi Artist.
-                    Book Online and make your special day beautiful.
+                    Professional Bridal and Arabic Mehndi Artist.
+                    Book online and make your special day beautiful.
                 </p>
 
             </div>
 
+
             <div class="footer-box">
 
-                <h3>Quick Links</h3>
+                <h3>
+                    Quick Links
+                </h3>
 
-                <a href="/">Home</a>
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
 
-                <a href="/about/">About</a>
+                <a href="{% url 'about' %}">
+                    About
+                </a>
 
-                <a href="/services/">Services</a>
+                <a href="{% url 'services' %}">
+                    Services
+                </a>
 
-                <a href="/gallery/">Gallery</a>
+                <a href="{% url 'gallery' %}">
+                    Gallery
+                </a>
 
-                <a href="/booking/">Booking</a>
+                <a href="{% url 'booking' %}">
+                    Booking
+                </a>
 
-                <a href="/contact/">Contact</a>
+                <a href="{% url 'contact' %}">
+                    Contact
+                </a>
 
             </div>
 
+
             <div class="footer-box">
 
-                <h3>Contact</h3>
+                <h3>
+                    Contact
+                </h3>
 
                 <p>
                     <i class="fa-solid fa-phone"></i>
@@ -138,17 +253,35 @@
 
             </div>
 
+
             <div class="footer-box">
 
-                <h3>Follow Us</h3>
+                <h3>
+                    Follow Us
+                </h3>
 
                 <div class="social">
 
-                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a
+                        href="#"
+                        aria-label="Facebook"
+                    >
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
 
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a
+                        href="#"
+                        aria-label="Instagram"
+                    >
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
 
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a
+                        href="#"
+                        aria-label="YouTube"
+                    >
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
 
                 </div>
 
@@ -156,7 +289,9 @@
 
         </div>
 
+
         <hr>
+
 
         <p class="copyright">
 
@@ -166,8 +301,11 @@
 
     </footer>
 
-    <!-- JavaScript -->
-    <script src="{% static 'website/js/script.js' %}"></script>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="{% static 'website/js/script.js' %}?v=21"></script>
+
 </body>
 
 </html>
