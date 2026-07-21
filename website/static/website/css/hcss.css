@@ -2678,3 +2678,85 @@ body.dark .notification-count {
         font-size: 28px;
     }
 }
+
+
+/* DARK MODE BUTTON CLICK FIX */
+
+.dark-mode-btn,
+#darkModeBtn {
+    position: relative;
+    z-index: 9999;
+    pointer-events: auto;
+    cursor: pointer;
+    border: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.dark-mode-btn i,
+#darkModeBtn i {
+    pointer-events: none;
+}
+
+/* Prevent navbar overlay from blocking button */
+
+.navbar,
+.nav-actions,
+.navbar-actions {
+    position: relative;
+}
+
+.nav-actions,
+.navbar-actions {
+    z-index: 100;
+}
+
+/* DARK MODE COLORS */
+
+body.dark-mode {
+    background: #171717;
+    color: #ffffff;
+}
+
+body.dark-mode .navbar,
+body.dark-mode header {
+    background: #242424;
+}
+
+body.dark-mode section,
+body.dark-mode .hero,
+body.dark-mode .services,
+body.dark-mode .gallery,
+body.dark-mode .about,
+body.dark-mode .reviews,
+body.dark-mode .contact {
+    background-color: #171717;
+    color: #ffffff;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode p,
+body.dark-mode .logo,
+body.dark-mode a {
+    color: #ffffff;
+}
+
+body.dark-mode .service-card,
+body.dark-mode .review-card,
+body.dark-mode .booking-form,
+body.dark-mode .contact-form,
+body.dark-mode .dashboard-table-box {
+    background: #272727;
+    color: #ffffff;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    color: #ffffff;
+    background: #333333;
+    border-color: #555555;
+}

@@ -281,3 +281,53 @@ if (contactForm) {
 }
 
 console.log("Mehndi By Dhami Loaded Successfully");
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const darkModeBtn = document.getElementById("darkModeBtn");
+    const body = document.body;
+
+    if (!darkModeBtn) {
+        console.error("Dark mode button not found.");
+        return;
+    }
+
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+        body.classList.add("dark-mode");
+        updateDarkModeIcon(true);
+    }
+
+    darkModeBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const isDarkMode = body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "theme",
+            isDarkMode ? "dark" : "light"
+        );
+
+        updateDarkModeIcon(isDarkMode);
+    });
+
+    function updateDarkModeIcon(isDarkMode) {
+        const icon = darkModeBtn.querySelector("i");
+
+        if (!icon) {
+            return;
+        }
+
+        if (isDarkMode) {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+        } else {
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+        }
+    }
+
+});
