@@ -8,12 +8,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv(
     "SECRET_KEY",
-    "django-insecure-change-this-key-for-production",
+    "django-insecure-local-development-key",
 )
-DEBUG = os.getenv("DEBUG", "True") == "True"
+
+DEBUG = os.getenv("DEBUG", "True").lower() == "true"
+
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
+    "dhami-mehndi.onrender.com",
+]
+
+render_hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+
+if render_hostname:
+    ALLOWED_HOSTS.append(render_hostname)
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://dhami-mehndi.onrender.com",
 ]
 INSTALLED_APPS = [
     "django.contrib.admin",
