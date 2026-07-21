@@ -13,28 +13,49 @@ Home | Mehndi By Dhami
 
     <div class="hero-content">
 
-        <p class="small-title">
-            Welcome To Mehndi By Dhami
-        </p>
+        <div class="hero-kicker">
+            <span class="hero-kicker-icon">
+                <i class="fa-solid fa-sparkles"></i>
+            </span>
+            Premium Mehndi Artist In Surat
+        </div>
 
         <h1>
-            Make Every Celebration Beautiful With Elegant Mehndi
+            Elegant Mehndi For Your
+            <span>Most Beautiful Moments</span>
         </h1>
 
-        <p>
-            Professional Bridal, Arabic, Modern and Traditional Mehndi Designs
-            for Weddings, Festivals and Special Occasions.
+        <p class="hero-description">
+            Professional Bridal, Arabic, Modern and Traditional Mehndi
+            designs for weddings, festivals and every special celebration.
         </p>
 
         <div class="hero-btn">
 
             <a href="{% url 'booking' %}" class="btn">
+                <i class="fa-solid fa-calendar-check"></i>
                 Book Appointment
             </a>
 
             <a href="{% url 'gallery' %}" class="btn2">
+                <i class="fa-regular fa-images"></i>
                 View Gallery
             </a>
+
+        </div>
+
+        <div class="hero-trust">
+
+            <div class="hero-avatars">
+                <span><i class="fa-solid fa-heart"></i></span>
+                <span><i class="fa-solid fa-star"></i></span>
+                <span><i class="fa-solid fa-leaf"></i></span>
+            </div>
+
+            <div>
+                <strong>500+ Happy Clients</strong>
+                <small>Trusted for weddings and celebrations</small>
+            </div>
 
         </div>
 
@@ -42,12 +63,63 @@ Home | Mehndi By Dhami
 
     <div class="hero-image">
 
-        <img
-            src="{% static 'website/image/hero1.jpg' %}"
-            alt="Beautiful Mehndi Design"
-        >
+        <div class="hero-image-frame">
+
+            <img
+                src="{% static 'website/image/hero1.jpg' %}"
+                alt="Beautiful Mehndi Design"
+            >
+
+            <div class="hero-floating-card hero-floating-top">
+                <i class="fa-solid fa-leaf"></i>
+                <span>
+                    <strong>100% Natural</strong>
+                    <small>Premium Mehndi</small>
+                </span>
+            </div>
+
+            <div class="hero-floating-card hero-floating-bottom">
+                <i class="fa-solid fa-award"></i>
+                <span>
+                    <strong>5+ Years</strong>
+                    <small>Professional Experience</small>
+                </span>
+            </div>
+
+        </div>
 
     </div>
+
+</section>
+
+
+<!-- ================= MOBILE TRUST STRIP ================= -->
+
+<section class="mobile-trust-strip">
+
+    <article>
+        <i class="fa-solid fa-leaf"></i>
+        <span>
+            <strong>Natural</strong>
+            <small>Mehndi</small>
+        </span>
+    </article>
+
+    <article>
+        <i class="fa-solid fa-heart"></i>
+        <span>
+            <strong>500+</strong>
+            <small>Clients</small>
+        </span>
+    </article>
+
+    <article>
+        <i class="fa-solid fa-clock"></i>
+        <span>
+            <strong>On-Time</strong>
+            <small>Service</small>
+        </span>
+    </article>
 
 </section>
 
@@ -58,21 +130,29 @@ Home | Mehndi By Dhami
 
     <div class="about-image">
 
-        <img
-            src="{% static 'website/image/artist.jpg' %}"
-            alt="Professional Mehndi Artist"
-        >
+        <div class="about-image-wrap">
+
+            <img
+                src="{% static 'website/image/artist.jpg' %}"
+                alt="Professional Mehndi Artist"
+            >
+
+            <div class="about-badge">
+                <strong>5+</strong>
+                <span>Years of<br>Experience</span>
+            </div>
+
+        </div>
 
     </div>
 
     <div class="about-content">
 
-        <p class="small-title">
-            About Us
-        </p>
+        <p class="small-title">About Us</p>
 
         <h2>
-            Trusted Mehndi Artist In Surat
+            Art That Makes Every Celebration
+            <span>More Memorable</span>
         </h2>
 
         <p>
@@ -80,30 +160,40 @@ Home | Mehndi By Dhami
             designs using premium-quality natural Mehndi.
         </p>
 
+        <div class="about-features">
+
+            <div>
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Personalised designs for every client</span>
+            </div>
+
+            <div>
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Natural, skin-friendly premium Mehndi</span>
+            </div>
+
+            <div>
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Professional and punctual service</span>
+            </div>
+
+        </div>
+
         <div class="about-box">
 
             <div>
-
                 <h3>5+</h3>
-
                 <p>Years Experience</p>
-
             </div>
 
             <div>
-
                 <h3>500+</h3>
-
                 <p>Happy Clients</p>
-
             </div>
 
             <div>
-
                 <h3>1000+</h3>
-
                 <p>Beautiful Designs</p>
-
             </div>
 
         </div>
@@ -117,13 +207,23 @@ Home | Mehndi By Dhami
 
 <section class="services" id="services">
 
-    <p class="small-title">
-        Our Services
-    </p>
+    <div class="section-heading">
 
-    <h2>
-        Popular Mehndi Packages
-    </h2>
+        <div>
+            <p class="small-title">Our Services</p>
+
+            <h2>
+                Popular Mehndi
+                <span>Packages</span>
+            </h2>
+        </div>
+
+        <a href="{% url 'services' %}" class="section-link">
+            View All
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+    </div>
 
     <p class="section-description">
         Choose a beautiful Mehndi package for your wedding,
@@ -136,42 +236,55 @@ Home | Mehndi By Dhami
 
             <article class="service-card">
 
-                {% if service.image %}
+                <div class="service-image-wrap">
 
-                    <img
-                        src="{{ service.image.url }}"
-                        alt="{{ service.title }}"
-                        loading="lazy"
+                    {% if service.image %}
+
+                        <img
+                            src="{{ service.image.url }}"
+                            alt="{{ service.title }}"
+                            loading="lazy"
+                        >
+
+                    {% else %}
+
+                        <img
+                            src="{% static 'website/image/hero1.jpg' %}"
+                            alt="{{ service.title }}"
+                            loading="lazy"
+                        >
+
+                    {% endif %}
+
+                    <span class="service-chip">
+                        Popular
+                    </span>
+
+                </div>
+
+                <div class="service-card-body">
+
+                    <div class="service-card-head">
+
+                        <h3>{{ service.title }}</h3>
+
+                        <h4>₹ {{ service.price }}</h4>
+
+                    </div>
+
+                    <p>
+                        {{ service.description|truncatewords:20 }}
+                    </p>
+
+                    <a
+                        href="{% url 'booking' %}?service={{ service.title|urlencode }}"
+                        class="service-book-link"
                     >
+                        Book This Package
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
 
-                {% else %}
-
-                    <img
-                        src="{% static 'website/image/hero1.jpg' %}"
-                        alt="{{ service.title }}"
-                        loading="lazy"
-                    >
-
-                {% endif %}
-
-                <h3>
-                    {{ service.title }}
-                </h3>
-
-                <h4>
-                    ₹ {{ service.price }}
-                </h4>
-
-                <p>
-                    {{ service.description|truncatewords:20 }}
-                </p>
-
-                <a
-                    href="{% url 'booking' %}?service={{ service.title|urlencode }}"
-                    class="btn"
-                >
-                    Book Now
-                </a>
+                </div>
 
             </article>
 
@@ -185,14 +298,6 @@ Home | Mehndi By Dhami
 
     </div>
 
-    <div class="section-button">
-
-        <a href="{% url 'services' %}" class="btn2">
-            View All Services
-        </a>
-
-    </div>
-
 </section>
 
 
@@ -200,13 +305,23 @@ Home | Mehndi By Dhami
 
 <section class="gallery" id="gallery">
 
-    <p class="small-title">
-        Gallery
-    </p>
+    <div class="section-heading">
 
-    <h2>
-        Latest Mehndi Designs
-    </h2>
+        <div>
+            <p class="small-title">Our Portfolio</p>
+
+            <h2>
+                Latest Mehndi
+                <span>Designs</span>
+            </h2>
+        </div>
+
+        <a href="{% url 'gallery' %}" class="section-link">
+            Full Gallery
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+    </div>
 
     <div class="gallery-container">
 
@@ -222,6 +337,18 @@ Home | Mehndi By Dhami
                         loading="lazy"
                     >
 
+                    <div class="gallery-overlay">
+
+                        <span>
+                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                        </span>
+
+                        <p>
+                            {{ image.title|default:'Elegant Mehndi Design' }}
+                        </p>
+
+                    </div>
+
                 {% endif %}
 
             </div>
@@ -236,14 +363,6 @@ Home | Mehndi By Dhami
 
     </div>
 
-    <div class="section-button">
-
-        <a href="{% url 'gallery' %}" class="btn2">
-            View Full Gallery
-        </a>
-
-    </div>
-
 </section>
 
 
@@ -251,71 +370,76 @@ Home | Mehndi By Dhami
 
 <section class="why">
 
-    <p class="small-title">
-        Why Choose Us
-    </p>
+    <div class="section-heading center-heading">
 
-    <h2>
-        Why Clients Love Mehndi By Dhami
-    </h2>
+        <div>
+            <p class="small-title">Why Choose Us</p>
+
+            <h2>
+                The Dhami
+                <span>Difference</span>
+            </h2>
+        </div>
+
+    </div>
 
     <div class="why-container">
 
-        <div class="why-card">
+        <article class="why-card">
 
-            <i class="fa-solid fa-leaf"></i>
+            <span class="why-icon">
+                <i class="fa-solid fa-leaf"></i>
+            </span>
 
-            <h3>
-                Natural Mehndi
-            </h3>
-
-            <p>
-                Chemical-free and premium-quality natural Mehndi.
-            </p>
-
-        </div>
-
-        <div class="why-card">
-
-            <i class="fa-solid fa-heart"></i>
-
-            <h3>
-                Unique Designs
-            </h3>
+            <h3>Natural Mehndi</h3>
 
             <p>
-                Beautiful modern and traditional Mehndi designs.
+                Chemical-free and premium-quality natural Mehndi for rich colour.
             </p>
 
-        </div>
+        </article>
 
-        <div class="why-card">
+        <article class="why-card">
 
-            <i class="fa-solid fa-award"></i>
+            <span class="why-icon">
+                <i class="fa-solid fa-heart"></i>
+            </span>
 
-            <h3>
-                Professional Artist
-            </h3>
+            <h3>Unique Designs</h3>
 
             <p>
-                Professional service with years of experience.
+                Beautiful modern and traditional designs created for your occasion.
             </p>
 
-        </div>
+        </article>
 
-        <div class="why-card">
+        <article class="why-card">
 
-            <i class="fa-solid fa-clock"></i>
+            <span class="why-icon">
+                <i class="fa-solid fa-award"></i>
+            </span>
 
-            <h3>
-                On-Time Service
-            </h3>
+            <h3>Professional Artist</h3>
 
             <p>
-                Fast, reliable and well-managed booking service.
+                Experienced artistry with a clean, detailed and elegant finish.
             </p>
 
-        </div>
+        </article>
+
+        <article class="why-card">
+
+            <span class="why-icon">
+                <i class="fa-solid fa-clock"></i>
+            </span>
+
+            <h3>On-Time Service</h3>
+
+            <p>
+                Reliable appointments and well-managed service for your event.
+            </p>
+
+        </article>
 
     </div>
 
@@ -326,13 +450,18 @@ Home | Mehndi By Dhami
 
 <section class="review" id="reviews">
 
-    <p class="small-title">
-        Client Reviews
-    </p>
+    <div class="section-heading">
 
-    <h2>
-        What Our Happy Clients Say
-    </h2>
+        <div>
+            <p class="small-title">Client Love</p>
+
+            <h2>
+                Words From Our
+                <span>Happy Clients</span>
+            </h2>
+        </div>
+
+    </div>
 
     <div class="review-container">
 
@@ -340,18 +469,18 @@ Home | Mehndi By Dhami
 
             <article class="review-card">
 
+                <div class="review-quote">
+                    <i class="fa-solid fa-quote-left"></i>
+                </div>
+
                 <div class="review-stars">
 
                     {% for star in "12345" %}
 
                         {% if forloop.counter <= review.rating %}
-
                             <span class="filled-star">★</span>
-
                         {% else %}
-
                             <span class="empty-star">★</span>
-
                         {% endif %}
 
                     {% endfor %}
@@ -362,13 +491,18 @@ Home | Mehndi By Dhami
                     “{{ review.message }}”
                 </p>
 
-                <h3>
-                    {{ review.name }}
-                </h3>
+                <div class="review-client">
 
-                <small>
-                    {{ review.created_at|date:"d M Y" }}
-                </small>
+                    <span class="review-avatar">
+                        {{ review.name|slice:":1"|upper }}
+                    </span>
+
+                    <span>
+                        <h3>{{ review.name }}</h3>
+                        <small>{{ review.created_at|date:"d M Y" }}</small>
+                    </span>
+
+                </div>
 
             </article>
 
@@ -393,13 +527,13 @@ Home | Mehndi By Dhami
 
         <div class="review-form-heading">
 
-            <p class="small-title">
-                Share Your Experience
-            </p>
+            <span class="form-heading-icon">
+                <i class="fa-solid fa-star"></i>
+            </span>
 
-            <h2>
-                Leave A Review
-            </h2>
+            <p class="small-title">Share Your Experience</p>
+
+            <h2>Leave A Review</h2>
 
             <p>
                 Your review will appear on the website after admin approval.
@@ -410,10 +544,8 @@ Home | Mehndi By Dhami
         {% if review_success %}
 
             <div class="success-message">
-
                 Thank you! Your review has been submitted successfully.
                 It will appear after admin approval.
-
             </div>
 
         {% endif %}
@@ -421,9 +553,7 @@ Home | Mehndi By Dhami
         {% if review_error %}
 
             <div class="error-message">
-
                 {{ review_error }}
-
             </div>
 
         {% endif %}
@@ -486,20 +616,15 @@ Home | Mehndi By Dhami
                     Your Rating
                 </label>
 
-                <select
-                    id="rating"
-                    name="rating"
-                    required
-                >
+                <select id="rating" name="rating" required>
 
-                    <option value="">
-                        Select Rating
-                    </option>
+                    <option value="">Select Rating</option>
+                    <option value="5">★★★★★ - Excellent</option>
+                    <option value="4">★★★★☆ - Very Good</option>
+                    <option value="3">★★★☆☆ - Good</option>
+                    <option value="2">★★☆☆☆ - Average</option>
+                    <option value="1">★☆☆☆☆ - Poor</option>
 
-<option value="4">★★★★☆ - Very Good</option>
-<option value="3">★★★☆☆ - Good</option>
-<option value="2">★★☆☆☆ - Average</option>
-<option value="1">★☆☆☆☆ - Poor</option>
                 </select>
 
             </div>
@@ -521,7 +646,8 @@ Home | Mehndi By Dhami
 
             </div>
 
-            <button type="submit" class="btn">
+            <button type="submit" class="btn form-submit-btn">
+                <i class="fa-solid fa-paper-plane"></i>
                 Submit Review
             </button>
 
@@ -536,6 +662,15 @@ Home | Mehndi By Dhami
 
 <section class="cta">
 
+    <div class="cta-decoration cta-decoration-one"></div>
+    <div class="cta-decoration cta-decoration-two"></div>
+
+    <span class="cta-icon">
+        <i class="fa-solid fa-hand-sparkles"></i>
+    </span>
+
+    <p class="small-title">Your Special Day Deserves Beautiful Art</p>
+
     <h2>
         Ready To Book Your Mehndi?
     </h2>
@@ -545,7 +680,8 @@ Home | Mehndi By Dhami
         celebration more beautiful.
     </p>
 
-    <a href="{% url 'booking' %}" class="btn">
+    <a href="{% url 'booking' %}" class="btn cta-button">
+        <i class="fa-solid fa-calendar-check"></i>
         Book Appointment
     </a>
 
@@ -558,31 +694,64 @@ Home | Mehndi By Dhami
 
     <div class="contact-home-details">
 
-        <p class="small-title">
-            Contact Us
-        </p>
+        <p class="small-title">Contact Us</p>
 
         <h2>
-            Get In Touch
+            Let’s Create Something
+            <span>Beautiful Together</span>
         </h2>
 
-        <p>
-            <i class="fa-solid fa-phone"></i>
-            +91 9999999999
+        <p class="contact-intro">
+            Have a question or want to discuss your design?
+            Reach out and we will be happy to help.
         </p>
 
-        <p>
-            <i class="fa-solid fa-envelope"></i>
-            info@mehndibydhami.com
-        </p>
+        <div class="contact-list">
 
-        <p>
-            <i class="fa-solid fa-location-dot"></i>
-            Surat, Gujarat
-        </p>
+            <a href="tel:+919999999999">
+
+                <span>
+                    <i class="fa-solid fa-phone"></i>
+                </span>
+
+                <div>
+                    <small>Call Us</small>
+                    <strong>+91 9999999999</strong>
+                </div>
+
+            </a>
+
+            <a href="mailto:info@mehndibydhami.com">
+
+                <span>
+                    <i class="fa-solid fa-envelope"></i>
+                </span>
+
+                <div>
+                    <small>Email Us</small>
+                    <strong>info@mehndibydhami.com</strong>
+                </div>
+
+            </a>
+
+            <div>
+
+                <span>
+                    <i class="fa-solid fa-location-dot"></i>
+                </span>
+
+                <div>
+                    <small>Visit Us</small>
+                    <strong>Surat, Gujarat</strong>
+                </div>
+
+            </div>
+
+        </div>
 
         <a href="{% url 'contact' %}" class="btn">
             Contact Us
+            <i class="fa-solid fa-arrow-right"></i>
         </a>
 
     </div>
@@ -596,6 +765,14 @@ Home | Mehndi By Dhami
             title="Mehndi By Dhami Location"
         >
         </iframe>
+
+        <div class="map-card">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>
+                <strong>Mehndi By Dhami</strong>
+                <small>Surat, Gujarat</small>
+            </span>
+        </div>
 
     </div>
 

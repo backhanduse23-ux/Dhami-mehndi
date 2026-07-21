@@ -4,12 +4,11 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
     <title>
@@ -28,213 +27,174 @@
         content="Mehndi, Bridal Mehndi, Arabic Mehndi, Mehndi Artist, Surat Mehndi"
     >
 
-    <meta
-        name="author"
-        content="Mehndi By Dhami"
-    >
-
-
-    <!-- Google Font -->
+    <meta name="author" content="Mehndi By Dhami">
+    <meta name="theme-color" content="#b76e79">
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet"
     >
-
-
-    <!-- Font Awesome -->
 
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
     >
 
-
-    <!-- Main CSS -->
-
-<link
-    rel="stylesheet"
-    href="{% static 'website/css/hcss.css' %}?v=40"
->
+    <link
+        rel="stylesheet"
+        href="{% static 'website/css/hcss.css' %}?v=50"
+    >
 </head>
-
 
 <body>
 
-    <!-- ================= HEADER ================= -->
+    <div class="site-shell">
 
-    <header>
+        <!-- ================= HEADER ================= -->
 
-        <nav class="navbar">
+        <header class="site-header">
 
-            <a href="{% url 'home' %}" class="logo">
-                Mehndi By Dhami
-            </a>
+            <nav class="navbar">
 
+                <a href="{% url 'home' %}" class="logo" aria-label="Mehndi By Dhami Home">
+                    <span class="logo-mark">
+                        <i class="fa-solid fa-leaf"></i>
+                    </span>
 
-            <ul class="nav-links">
-
-                <li>
-                    <a href="{% url 'home' %}">
-                        Home
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'about' %}">
-                        About
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'services' %}">
-                        Services
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'gallery' %}">
-                        Gallery
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'booking' %}">
-                        Booking
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'track_booking' %}">
-                        Track Booking
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'contact' %}">
-                        Contact
-                    </a>
-                </li>
-
-            </ul>
-
-
-            <div class="nav-right">
-
-                <!-- Dark Mode Button -->
-<button id="darkModeBtn" class="dark-mode-btn" type="button">
-    <i class="fa-solid fa-moon"></i>
-</button>
-
-
-                <a
-                    href="{% url 'booking' %}"
-                    class="book-btn"
-                >
-                    Book Now
+                    <span class="logo-text">
+                        <strong>Mehndi</strong>
+                        <small>By Dhami</small>
+                    </span>
                 </a>
 
+                <ul class="nav-links" id="desktopNav">
+
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                    <li><a href="{% url 'track_booking' %}">Track</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+
+                </ul>
+
+                <div class="nav-right">
+
+                    <button
+                        id="darkModeBtn"
+                        class="icon-button dark-mode-btn"
+                        type="button"
+                        aria-label="Switch theme"
+                    >
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+
+                    <a
+                        href="{% url 'booking' %}"
+                        class="book-btn desktop-book-btn"
+                    >
+                        Book Now
+                    </a>
+
+                    <button
+                        id="mobileMenuBtn"
+                        class="icon-button mobile-menu-btn"
+                        type="button"
+                        aria-label="Open navigation menu"
+                        aria-expanded="false"
+                        aria-controls="mobileDrawer"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                </div>
+
+            </nav>
+
+        </header>
+
+
+        <!-- ================= MOBILE DRAWER ================= -->
+
+        <div class="drawer-overlay" id="drawerOverlay"></div>
+
+        <aside
+            class="mobile-drawer"
+            id="mobileDrawer"
+            aria-hidden="true"
+        >
+
+            <div class="drawer-header">
+
+                <a href="{% url 'home' %}" class="drawer-brand">
+                    <span class="logo-mark">
+                        <i class="fa-solid fa-leaf"></i>
+                    </span>
+
+                    <span>
+                        <strong>Mehndi By Dhami</strong>
+                        <small>Elegant art for every celebration</small>
+                    </span>
+                </a>
+
+                <button
+                    id="closeDrawerBtn"
+                    class="drawer-close"
+                    type="button"
+                    aria-label="Close navigation menu"
+                >
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
             </div>
 
-        </nav>
-
-    </header>
-
-
-    <!-- ================= MAIN CONTENT ================= -->
-
-    <main>
-
-        {% block content %}
-
-        {% endblock %}
-
-    </main>
-
-
-    <!-- ================= WHATSAPP BUTTON ================= -->
-
-    <a
-        href="https://wa.me/919999999999"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="whatsapp"
-        aria-label="Contact on WhatsApp"
-    >
-
-        <i class="fa-brands fa-whatsapp"></i>
-
-    </a>
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-        <div class="footer-container">
-
-            <div class="footer-box">
-
-                <h2>
-                    Mehndi By Dhami
-                </h2>
-
-                <p>
-                    Professional Bridal and Arabic Mehndi Artist.
-                    Book online and make your special day beautiful.
-                </p>
-
-            </div>
-
-
-            <div class="footer-box">
-
-                <h3>
-                    Quick Links
-                </h3>
+            <nav class="drawer-nav">
 
                 <a href="{% url 'home' %}">
-                    Home
+                    <i class="fa-solid fa-house"></i>
+                    <span>Home</span>
                 </a>
 
                 <a href="{% url 'about' %}">
-                    About
+                    <i class="fa-solid fa-user"></i>
+                    <span>About</span>
                 </a>
 
                 <a href="{% url 'services' %}">
-                    Services
+                    <i class="fa-solid fa-hand-sparkles"></i>
+                    <span>Services</span>
                 </a>
 
                 <a href="{% url 'gallery' %}">
-                    Gallery
+                    <i class="fa-solid fa-images"></i>
+                    <span>Gallery</span>
                 </a>
 
                 <a href="{% url 'booking' %}">
-                    Booking
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Booking</span>
+                </a>
+
+                <a href="{% url 'track_booking' %}">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                    <span>Track Booking</span>
                 </a>
 
                 <a href="{% url 'contact' %}">
-                    Contact
+                    <i class="fa-solid fa-phone"></i>
+                    <span>Contact</span>
                 </a>
 
-            </div>
+            </nav>
 
+            <div class="drawer-footer">
 
-            <div class="footer-box">
-
-                <h3>
-                    Contact
-                </h3>
-
-                <p>
-                    <i class="fa-solid fa-phone"></i>
-                    +91 9999999999
-                </p>
-
-                <p>
-                    <i class="fa-solid fa-envelope"></i>
-                    info@mehndibydhami.com
-                </p>
+                <a href="{% url 'booking' %}" class="drawer-book-btn">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                    Book Appointment
+                </a>
 
                 <p>
                     <i class="fa-solid fa-location-dot"></i>
@@ -243,57 +203,149 @@
 
             </div>
 
+        </aside>
 
-            <div class="footer-box">
 
-                <h3>
-                    Follow Us
-                </h3>
+        <!-- ================= MAIN CONTENT ================= -->
 
-                <div class="social">
+        <main>
 
-                    <a
-                        href="#"
-                        aria-label="Facebook"
-                    >
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </a>
+            {% block content %}
+            {% endblock %}
 
-                    <a
-                        href="#"
-                        aria-label="Instagram"
-                    >
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
+        </main>
 
-                    <a
-                        href="#"
-                        aria-label="YouTube"
-                    >
-                        <i class="fa-brands fa-youtube"></i>
-                    </a>
+
+        <!-- ================= MOBILE BOTTOM ACTION ================= -->
+
+        <div class="mobile-bottom-bar">
+
+            <a href="{% url 'track_booking' %}" class="mobile-bottom-link">
+                <i class="fa-solid fa-location-crosshairs"></i>
+                <span>Track</span>
+            </a>
+
+            <a href="{% url 'booking' %}" class="mobile-bottom-book">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Book Mehndi</span>
+            </a>
+
+            <a href="{% url 'contact' %}" class="mobile-bottom-link">
+                <i class="fa-solid fa-phone"></i>
+                <span>Contact</span>
+            </a>
+
+        </div>
+
+
+        <!-- ================= WHATSAPP BUTTON ================= -->
+
+        <a
+            href="https://wa.me/919999999999"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="whatsapp"
+            aria-label="Contact on WhatsApp"
+        >
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer>
+
+            <div class="footer-container">
+
+                <div class="footer-box footer-brand-box">
+
+                    <div class="footer-brand">
+                        <span class="logo-mark">
+                            <i class="fa-solid fa-leaf"></i>
+                        </span>
+
+                        <div>
+                            <h2>Mehndi By Dhami</h2>
+                            <span>Elegant • Natural • Memorable</span>
+                        </div>
+                    </div>
+
+                    <p>
+                        Professional Bridal and Arabic Mehndi Artist.
+                        Book online and make your special day beautiful.
+                    </p>
+
+                </div>
+
+                <div class="footer-box">
+
+                    <h3>Quick Links</h3>
+
+                    <a href="{% url 'home' %}">Home</a>
+                    <a href="{% url 'about' %}">About</a>
+                    <a href="{% url 'services' %}">Services</a>
+                    <a href="{% url 'gallery' %}">Gallery</a>
+                    <a href="{% url 'booking' %}">Booking</a>
+                    <a href="{% url 'contact' %}">Contact</a>
+
+                </div>
+
+                <div class="footer-box">
+
+                    <h3>Contact</h3>
+
+                    <p>
+                        <i class="fa-solid fa-phone"></i>
+                        +91 9999999999
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-envelope"></i>
+                        info@mehndibydhami.com
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Surat, Gujarat
+                    </p>
+
+                </div>
+
+                <div class="footer-box">
+
+                    <h3>Follow Us</h3>
+
+                    <div class="social">
+
+                        <a href="#" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <a href="#" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                        <a href="#" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
+            <hr>
 
+            <p class="copyright">
+                © 2026 Mehndi By Dhami | All Rights Reserved.
+            </p>
 
-        <hr>
+        </footer>
 
+    </div>
 
-        <p class="copyright">
+    <script src="{% static 'website/js/script.js' %}?v=50"></script>
 
-            © 2026 Mehndi By Dhami | All Rights Reserved.
-
-        </p>
-
-    </footer>
-
-
-    <!-- ================= JAVASCRIPT ================= -->
-
-<script src="{% static 'website/js/script.js' %}?v=30"></script></body>
-
+</body>
 </html>
