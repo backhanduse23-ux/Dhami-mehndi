@@ -79,13 +79,6 @@ header{
 
 }
 
-.logo a{
-
-    font-size:28px;
-    font-weight:700;
-    color:var(--primary);
-
-}
 .logo{
     font-size:32px;
     font-weight:700;
@@ -2808,4 +2801,508 @@ justify-content:center;
 align-items:center;
 }
 
+/* =====================================================
+   FINAL MOBILE RESPONSIVE OVERRIDE
+   Mehndi By Dhami
+===================================================== */
+
+@media screen and (max-width: 768px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        width: 100%;
+    }
+
+    .navbar {
+        width: 100%;
+        min-height: 70px;
+        padding: 10px 14px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo {
+        min-width: 0;
+        width: 100%;
+        max-width: 165px;
+        overflow: hidden;
+        color: var(--primary);
+        font-size: 19px;
+        font-weight: 700;
+        line-height: 1.15;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-right {
+        display: contents;
+    }
+
+    #darkModeBtn,
+    .dark-mode-btn {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 50%;
+        background: var(--secondary);
+        color: #111111;
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+        z-index: 10000;
+        pointer-events: auto;
+        touch-action: manipulation;
+    }
+
+    #darkModeBtn i,
+    .dark-mode-btn i {
+        pointer-events: none;
+    }
+
+    .book-btn {
+        width: auto !important;
+        min-width: 102px;
+        padding: 11px 16px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 28px;
+        color: #ffffff;
+        font-size: 15px;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 52px 16px 34px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        text-align: center;
+    }
+
+    .hero-content,
+    .hero-text {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .hero .small-title {
+        margin-bottom: 14px;
+        font-size: 13px;
+        line-height: 1.5;
+        letter-spacing: 2.5px;
+    }
+
+    .hero h1 {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 0 20px;
+        font-size: clamp(36px, 10vw, 46px);
+        line-height: 1.08;
+        letter-spacing: -1px;
+        word-break: normal;
+    }
+
+    .hero p {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto 26px;
+        color: var(--text);
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .hero-btn {
+        width: 100%;
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    .hero-btn .btn,
+    .hero-btn .btn2 {
+        width: 100%;
+        min-height: 54px;
+        padding: 14px 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 28px;
+        font-size: 17px;
+    }
+
+    .hero-image {
+        width: 100%;
+        margin: 0;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 24px;
+    }
+
+    /* ================= ABOUT ================= */
+
+    .about {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 60px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .about-image {
+        width: 100%;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+        max-height: 430px;
+        object-fit: cover;
+        border-radius: 22px;
+    }
+
+    .about-content h2 {
+        font-size: 30px;
+        line-height: 1.25;
+    }
+
+    .about-content p {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+    .about-box {
+        width: 100%;
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .about-box div {
+        width: 100%;
+        min-height: 145px;
+        padding: 25px 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 18px;
+    }
+
+    .about-box h3 {
+        font-size: 32px;
+    }
+
+    /* ================= GENERAL SECTIONS ================= */
+
+    .services,
+    .gallery,
+    .review,
+    .why,
+    .review-form-section,
+    .cta,
+    .contact-home {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 58px 16px;
+    }
+
+    .services h2,
+    .gallery h2,
+    .review h2,
+    .why h2,
+    .cta h2,
+    .review-form-heading h2 {
+        margin-bottom: 24px;
+        font-size: 30px;
+        line-height: 1.25;
+    }
+
+    .section-description {
+        margin: 12px auto 30px;
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    /* ================= CARDS ================= */
+
+    .service-container,
+    .gallery-container,
+    .review-container,
+    .why-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 30px auto 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .service-card,
+    .gallery-card,
+    .review-card,
+    .why-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 20px;
+    }
+
+    .service-card img {
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+    }
+
+    .gallery-card {
+        height: 260px;
+    }
+
+    .gallery-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .service-card h3 {
+        margin-top: 20px;
+        font-size: 23px;
+    }
+
+    .service-card h4 {
+        font-size: 20px;
+    }
+
+    .service-card p,
+    .review-card p,
+    .why-card p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    /* ================= CONTACT ================= */
+
+    .contact-home {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    .contact-home > div {
+        width: 100%;
+        padding: 26px 18px;
+        border-radius: 18px;
+    }
+
+    .contact-home h2 {
+        font-size: 29px;
+    }
+
+    .contact-home iframe {
+        width: 100%;
+        height: 280px;
+        border-radius: 18px;
+    }
+
+    /* ================= FORMS ================= */
+
+    .booking-page,
+    .receipt-page,
+    .dashboard-page,
+    .booking-calendar-page {
+        padding: 45px 14px;
+    }
+
+    .booking-box,
+    .receipt-box,
+    .review-form-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 25px 16px;
+        border-radius: 18px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea,
+    .booking-box input,
+    .booking-box select,
+    .booking-box textarea {
+        min-height: 50px;
+        font-size: 16px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+        padding: 55px 18px 22px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+    }
+
+    .social {
+        justify-content: center;
+    }
+
+    /* ================= FLOATING BUTTONS ================= */
+
+    .whatsapp {
+        right: 16px;
+        bottom: 18px;
+        width: 58px;
+        height: 58px;
+        font-size: 29px;
+        z-index: 9998;
+    }
+
+    #topBtn {
+        right: 18px !important;
+        bottom: 88px !important;
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    /* ================= DARK MODE ================= */
+
+    body.dark-mode {
+        background: #171717;
+        color: #ffffff;
+    }
+
+    body.dark-mode header,
+    body.dark-mode .navbar {
+        background: #242424;
+    }
+
+    body.dark-mode .logo {
+        color: #ffffff;
+    }
+
+    body.dark-mode #darkModeBtn,
+    body.dark-mode .dark-mode-btn {
+        color: #ffffff;
+        background: #333333;
+        border-color: #555555;
+    }
+
+    body.dark-mode .service-card,
+    body.dark-mode .review-card,
+    body.dark-mode .why-card,
+    body.dark-mode .about-box div,
+    body.dark-mode .contact-home > div,
+    body.dark-mode .booking-box,
+    body.dark-mode .receipt-box,
+    body.dark-mode .review-form-container {
+        background: #292929;
+        color: #ffffff;
+    }
+
+    body.dark-mode p,
+    body.dark-mode .section-description {
+        color: #dddddd;
+    }
+}
+
+@media screen and (max-width: 390px) {
+
+    .navbar {
+        padding: 9px 10px;
+        gap: 7px;
+    }
+
+    .logo {
+        max-width: 125px;
+        font-size: 17px;
+    }
+
+    #darkModeBtn,
+    .dark-mode-btn {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        font-size: 16px;
+    }
+
+    .book-btn {
+        min-width: 90px;
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: 44px 12px 30px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .hero-image img {
+        height: 245px;
+    }
+
+    .services,
+    .gallery,
+    .review,
+    .why,
+    .review-form-section,
+    .cta,
+    .contact-home,
+    .about {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
 }
