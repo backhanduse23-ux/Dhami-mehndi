@@ -1,0 +1,239 @@
+{% extends "website/base.html" %}
+
+{% block title %}Booking Receipt | Mehndi By Dhami{% endblock %}
+
+{% block content %}
+
+<style>
+    .receipt-page{
+        min-height:75vh;
+        padding:70px 20px;
+        background:#fff7f9;
+    }
+
+    .receipt-box{
+        width:100%;
+        max-width:720px;
+        margin:0 auto;
+        background:#ffffff;
+        padding:40px;
+        border-radius:18px;
+        box-shadow:0 12px 35px rgba(0,0,0,.10);
+        border:1px solid #f0dadd;
+    }
+
+    .receipt-header{
+        text-align:center;
+        padding-bottom:22px;
+        margin-bottom:25px;
+        border-bottom:2px dashed #c27682;
+    }
+
+    .receipt-header h1{
+        margin:0 0 8px;
+        font-size:34px;
+        color:#c27682;
+    }
+
+    .receipt-header p{
+        margin:0;
+        color:#555;
+        font-size:18px;
+    }
+
+    .receipt-row{
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+        gap:25px;
+        padding:14px 0;
+        border-bottom:1px solid #eeeeee;
+    }
+
+    .receipt-row span{
+        color:#666;
+        font-weight:500;
+    }
+
+    .receipt-row strong{
+        color:#222;
+        text-align:right;
+        max-width:65%;
+        word-break:break-word;
+    }
+
+    .receipt-note{
+        margin-top:25px;
+        background:#fff0f3;
+        color:#555;
+        padding:15px;
+        border-radius:10px;
+        text-align:center;
+    }
+
+    .receipt-actions{
+        margin-top:30px;
+        display:flex;
+        justify-content:center;
+        gap:15px;
+        flex-wrap:wrap;
+    }
+
+    .receipt-actions .receipt-btn{
+        display:inline-block;
+        min-width:170px;
+        padding:13px 24px;
+        border-radius:30px;
+        text-decoration:none;
+        text-align:center;
+        border:none;
+        cursor:pointer;
+        font-size:15px;
+    }
+
+    .receipt-primary{
+        background:#c27682;
+        color:#ffffff;
+    }
+
+    .receipt-secondary{
+        background:#ffffff;
+        color:#c27682;
+        border:2px solid #c27682 !important;
+    }
+
+    @media(max-width:600px){
+        .receipt-box{
+            padding:25px 18px;
+        }
+
+        .receipt-row{
+            flex-direction:column;
+            gap:5px;
+        }
+
+        .receipt-row strong{
+            max-width:100%;
+            text-align:left;
+        }
+
+        .receipt-actions{
+            flex-direction:column;
+        }
+
+        .receipt-actions .receipt-btn{
+            width:100%;
+        }
+    }
+
+    @media print{
+        header,
+        footer,
+        .whatsapp,
+        #topBtn,
+        .receipt-actions{
+            display:none !important;
+        }
+
+        body,
+        .receipt-page{
+            background:#ffffff !important;
+        }
+
+        .receipt-page{
+            padding:0;
+        }
+
+        .receipt-box{
+            box-shadow:none;
+            border:none;
+            max-width:100%;
+            padding:20px;
+        }
+    }
+</style>
+
+<section class="receipt-page">
+
+    <div class="receipt-box">
+
+        <div class="receipt-header">
+            <h1>Mehndi By Dhami</h1>
+            <p>Booking Receipt</p>
+        </div>
+
+        <div class="receipt-row">
+            <span>Booking ID</span>
+            <strong>{{ booking.booking_id }}</strong>
+        </div>
+
+        <div class="receipt-row">
+            <span>Name</span>
+            <strong>{{ booking.name }}</strong>
+        </div>
+
+        <div class="receipt-row">
+            <span>Email</span>
+            <strong>{{ booking.email|default:"Not Provided" }}</strong>
+        </div>
+
+        <div class="receipt-row">
+            <span>Phone</span>
+            <strong>{{ booking.phone }}</strong>
+        </div>
+
+        <div class="receipt-row">
+            <span>Service</span>
+            <strong>{{ booking.service }}</strong>
+        </div>
+
+        <div class="receipt-row">
+            <span>Booking Date</span>
+            <strong>{{ booking.booking_date|date:"d M Y" }}</strong>
+        </div>
+
+        <div class="receipt-row">
+            <span>Address</span>
+            <strong>{{ booking.address }}</strong>
+        </div>
+
+        <div class="receipt-row">
+            <span>Status</span>
+            <strong>{{ booking.status }}</strong>
+        </div>
+
+        <div class="receipt-note">
+            Please keep this receipt and Booking ID for future reference.
+        </div>
+
+        <div class="receipt-actions">
+
+            <button
+                type="button"
+                class="receipt-btn receipt-primary"
+                onclick="window.print()"
+            >
+                Print / Save as PDF
+            </button>
+
+            <a
+                href="{% url 'track_booking' %}"
+                class="receipt-btn receipt-secondary"
+            >
+                Back to Tracking
+            </a>
+
+            <a
+                href="{% url 'home' %}"
+                class="receipt-btn receipt-secondary"
+            >
+                Home
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,591 @@
+{% extends "website/base.html" %}
+
+{% block title %}
+Admin Dashboard | Mehndi By Dhami
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-page">
+
+    <div class="dashboard-container">
+
+        <!-- ================= HEADER ================= -->
+
+        <div class="dashboard-header">
+
+            <div>
+                <p class="small-title">Management Panel</p>
+
+                <h1>Admin Dashboard</h1>
+
+                <p>
+                    Manage bookings, reviews and website notifications.
+                </p>
+            </div>
+
+            <a href="/admin/" class="btn">
+                Open Django Admin
+            </a>
+
+        </div>
+
+
+        <!-- ================= ADMIN NOTIFICATIONS ================= -->
+
+        <div class="dashboard-notification-box">
+
+            <div class="notification-heading">
+
+                <div>
+                    <p class="small-title">Latest Alerts</p>
+                    <h2>Admin Notifications</h2>
+                </div>
+
+                <div class="notification-bell">
+                    <i class="fa-solid fa-bell"></i>
+
+                    {% if pending_bookings or pending_reviews %}
+                        <span class="notification-count">
+                            {{ pending_bookings|add:pending_reviews }}
+                        </span>
+                    {% endif %}
+                </div>
+
+            </div>
+
+
+            <div class="notification-list">
+
+                <!-- Newest Booking -->
+
+                {% if latest_booking %}
+
+                    <div class="notification-item notification-booking">
+
+                        <div class="notification-icon">
+                            <i class="fa-solid fa-calendar-plus"></i>
+                        </div>
+
+                        <div class="notification-content">
+
+                            <h3>Latest Booking Received</h3>
+
+                            <p>
+                                <strong>{{ latest_booking.name }}</strong>
+                                booked
+                                <strong>{{ latest_booking.service }}</strong>
+                                for
+                                {{ latest_booking.booking_date|date:"d M Y" }}.
+                            </p>
+
+                            <small>
+                                Booking ID: {{ latest_booking.booking_id }}
+                            </small>
+
+                        </div>
+
+                        <a
+                            href="{% url 'booking_receipt' latest_booking.booking_id %}"
+                            class="notification-action"
+                        >
+                            View
+                        </a>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- Pending Bookings -->
+
+                {% if pending_bookings > 0 %}
+
+                    <div class="notification-item notification-warning">
+
+                        <div class="notification-icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+
+                        <div class="notification-content">
+
+                            <h3>Pending Bookings</h3>
+
+                            <p>
+                                {{ pending_bookings }}
+                                booking{{ pending_bookings|pluralize }}
+                                waiting for confirmation.
+                            </p>
+
+                        </div>
+
+                        <a
+                            href="/admin/website/booking/?status__exact=Pending"
+                            class="notification-action"
+                        >
+                            Manage
+                        </a>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- Pending Reviews -->
+
+                {% if pending_reviews > 0 %}
+
+                    <div class="notification-item notification-review">
+
+                        <div class="notification-icon">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+
+                        <div class="notification-content">
+
+                            <h3>Reviews Waiting for Approval</h3>
+
+                            <p>
+                                {{ pending_reviews }}
+                                review{{ pending_reviews|pluralize }}
+                                waiting for admin approval.
+                            </p>
+
+                        </div>
+
+                        <a
+                            href="/admin/website/review/?is_visible__exact=0"
+                            class="notification-action"
+                        >
+                            Review
+                        </a>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- Today's Bookings -->
+
+                {% if today_bookings_count > 0 %}
+
+                    <div class="notification-item notification-today">
+
+                        <div class="notification-icon">
+                            <i class="fa-solid fa-calendar-day"></i>
+                        </div>
+
+                        <div class="notification-content">
+
+                            <h3>Today's Bookings</h3>
+
+                            <p>
+                                You have {{ today_bookings_count }}
+                                booking{{ today_bookings_count|pluralize }}
+                                scheduled for today.
+                            </p>
+
+                        </div>
+
+                        <a
+                            href="{% url 'booking_calendar' %}"
+                            class="notification-action"
+                        >
+                            Calendar
+                        </a>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- Cancelled Bookings -->
+
+                {% if cancelled_bookings > 0 %}
+
+                    <div class="notification-item notification-cancelled">
+
+                        <div class="notification-icon">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </div>
+
+                        <div class="notification-content">
+
+                            <h3>Cancelled Bookings</h3>
+
+                            <p>
+                                {{ cancelled_bookings }}
+                                cancelled booking{{ cancelled_bookings|pluralize }}
+                                found in the system.
+                            </p>
+
+                        </div>
+
+                        <a
+                            href="/admin/website/booking/?status__exact=Cancelled"
+                            class="notification-action"
+                        >
+                            View
+                        </a>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- No Notifications -->
+
+                {% if not latest_booking and pending_bookings == 0 and pending_reviews == 0 and today_bookings_count == 0 and cancelled_bookings == 0 %}
+
+                    <div class="notification-empty">
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <h3>No new notifications</h3>
+
+                        <p>
+                            Everything is currently up to date.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= STATISTICS CARDS ================= -->
+
+        <div class="dashboard-stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+                <div>
+                    <p>Total Bookings</p>
+                    <h2>{{ total_bookings }}</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card pending-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+                <div>
+                    <p>Pending</p>
+                    <h2>{{ pending_bookings }}</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card confirmed-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+                    <p>Confirmed</p>
+                    <h2>{{ confirmed_bookings }}</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card completed-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-check-double"></i>
+                </div>
+
+                <div>
+                    <p>Completed</p>
+                    <h2>{{ completed_bookings }}</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card cancelled-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </div>
+
+                <div>
+                    <p>Cancelled</p>
+                    <h2>{{ cancelled_bookings }}</h2>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card review-stat-card">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <div>
+                    <p>Total Reviews</p>
+                    <h2>{{ total_reviews|default:0 }}</h2>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= QUICK ACTIONS ================= -->
+
+        <div class="dashboard-actions">
+
+            <a
+                href="{% url 'booking_calendar' %}"
+                class="dashboard-action-card"
+            >
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                <span>Booking Calendar</span>
+
+            </a>
+
+
+            <a
+                href="{% url 'track_booking' %}"
+                class="dashboard-action-card"
+            >
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <span>Search Booking</span>
+
+            </a>
+
+
+            <a
+                href="/admin/website/booking/"
+                class="dashboard-action-card"
+            >
+
+                <i class="fa-solid fa-list"></i>
+
+                <span>Manage Bookings</span>
+
+            </a>
+
+
+            <a
+                href="/admin/website/review/"
+                class="dashboard-action-card"
+            >
+
+                <i class="fa-solid fa-star"></i>
+
+                <span>Manage Reviews</span>
+
+            </a>
+
+        </div>
+
+
+        <!-- ================= TODAY'S BOOKINGS ================= -->
+
+        {% if today_bookings_count > 0 %}
+
+            <div class="dashboard-table-box today-bookings-box">
+
+                <div class="dashboard-section-header">
+
+                    <div>
+                        <p class="small-title">Today's Schedule</p>
+                        <h2>Today's Bookings</h2>
+                    </div>
+
+                    <span class="calendar-total-bookings">
+                        Total: {{ today_bookings_count }}
+                    </span>
+
+                </div>
+
+
+                <div class="dashboard-table-wrapper">
+
+                    <table class="dashboard-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Customer</th>
+                                <th>Phone</th>
+                                <th>Service</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for booking in today_bookings %}
+
+                                <tr>
+
+                                    <td>
+                                        <strong>{{ booking.booking_id }}</strong>
+                                    </td>
+
+                                    <td>{{ booking.name }}</td>
+
+                                    <td>{{ booking.phone }}</td>
+
+                                    <td>{{ booking.service }}</td>
+
+                                    <td>
+
+                                        <span class="status-badge status-{{ booking.status|lower }}">
+                                            {{ booking.status }}
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <a
+                                            href="{% url 'booking_receipt' booking.booking_id %}"
+                                            class="table-action-btn"
+                                        >
+                                            Receipt
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- ================= RECENT BOOKINGS ================= -->
+
+        <div class="dashboard-table-box">
+
+            <div class="dashboard-section-header">
+
+                <div>
+                    <p class="small-title">Latest Activity</p>
+                    <h2>Recent Bookings</h2>
+                </div>
+
+                <a href="/admin/website/booking/" class="btn2">
+                    View All
+                </a>
+
+            </div>
+
+
+            <div class="dashboard-table-wrapper">
+
+                <table class="dashboard-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer</th>
+                            <th>Phone</th>
+                            <th>Service</th>
+                            <th>Booking Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for booking in recent_bookings %}
+
+                            <tr>
+
+                                <td>
+                                    <strong>{{ booking.booking_id }}</strong>
+                                </td>
+
+                                <td>{{ booking.name }}</td>
+
+                                <td>{{ booking.phone }}</td>
+
+                                <td>{{ booking.service }}</td>
+
+                                <td>
+                                    {{ booking.booking_date|date:"d M Y" }}
+                                </td>
+
+                                <td>
+
+                                    <span class="status-badge status-{{ booking.status|lower }}">
+                                        {{ booking.status }}
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <a
+                                        href="{% url 'booking_receipt' booking.booking_id %}"
+                                        class="table-action-btn"
+                                    >
+                                        Receipt
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                        {% empty %}
+
+                            <tr>
+
+                                <td colspan="7" class="empty-table-message">
+                                    No bookings found.
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "website/base.html" %}
+
+{% block title %}Book Appointment{% endblock %}
+
+{% block content %}
+
+<section class="booking-page">
+
+    <div class="booking-box">
+
+        <h2>Book Your Mehndi Appointment</h2>
+
+        <p>
+            Fill the details below and we will contact you shortly.
+        </p>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn">
+                Book Now
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

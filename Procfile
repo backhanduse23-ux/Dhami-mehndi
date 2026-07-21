@@ -1,0 +1,1 @@
+web: gunicorn mehndi_project.wsgi:application

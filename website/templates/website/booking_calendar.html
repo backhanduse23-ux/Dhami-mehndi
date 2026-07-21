@@ -1,0 +1,346 @@
+{% extends "website/base.html" %}
+
+{% block title %}
+Booking Calendar | Mehndi By Dhami
+{% endblock %}
+
+{% block content %}
+
+<section class="booking-calendar-page">
+
+    <div class="booking-calendar-container">
+
+        <!-- ================= HEADER ================= -->
+
+        <div class="calendar-page-header">
+
+            <div>
+                <p class="small-title">Booking Management</p>
+
+                <h1>Booking Calendar</h1>
+
+                <p>
+                    View all customer bookings according to their selected date.
+                </p>
+            </div>
+
+            <a href="{% url 'dashboard' %}" class="btn2">
+                Back to Dashboard
+            </a>
+
+        </div>
+
+
+        <!-- ================= MONTH FILTER ================= -->
+
+        <div class="calendar-filter-box">
+
+            <form method="get" class="calendar-filter-form">
+
+                <div class="calendar-filter-group">
+                    <label for="month">Month</label>
+
+                    <select name="month" id="month">
+
+                        <option value="1" {% if current_month == 1 %}selected{% endif %}>
+                            January
+                        </option>
+
+                        <option value="2" {% if current_month == 2 %}selected{% endif %}>
+                            February
+                        </option>
+
+                        <option value="3" {% if current_month == 3 %}selected{% endif %}>
+                            March
+                        </option>
+
+                        <option value="4" {% if current_month == 4 %}selected{% endif %}>
+                            April
+                        </option>
+
+                        <option value="5" {% if current_month == 5 %}selected{% endif %}>
+                            May
+                        </option>
+
+                        <option value="6" {% if current_month == 6 %}selected{% endif %}>
+                            June
+                        </option>
+
+                        <option value="7" {% if current_month == 7 %}selected{% endif %}>
+                            July
+                        </option>
+
+                        <option value="8" {% if current_month == 8 %}selected{% endif %}>
+                            August
+                        </option>
+
+                        <option value="9" {% if current_month == 9 %}selected{% endif %}>
+                            September
+                        </option>
+
+                        <option value="10" {% if current_month == 10 %}selected{% endif %}>
+                            October
+                        </option>
+
+                        <option value="11" {% if current_month == 11 %}selected{% endif %}>
+                            November
+                        </option>
+
+                        <option value="12" {% if current_month == 12 %}selected{% endif %}>
+                            December
+                        </option>
+
+                    </select>
+                </div>
+
+
+                <div class="calendar-filter-group">
+                    <label for="year">Year</label>
+
+                    <input
+                        type="number"
+                        name="year"
+                        id="year"
+                        min="2024"
+                        max="2100"
+                        value="{{ current_year }}"
+                    >
+                </div>
+
+
+                <button type="submit" class="btn calendar-filter-btn">
+                    Show Calendar
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- ================= STATUS LEGEND ================= -->
+
+        <div class="calendar-legend">
+
+            <div class="legend-item">
+                <span class="legend-color pending-color"></span>
+                Pending
+            </div>
+
+            <div class="legend-item">
+                <span class="legend-color confirmed-color"></span>
+                Confirmed
+            </div>
+
+            <div class="legend-item">
+                <span class="legend-color completed-color"></span>
+                Completed
+            </div>
+
+            <div class="legend-item">
+                <span class="legend-color cancelled-color"></span>
+                Cancelled
+            </div>
+
+        </div>
+
+
+        <!-- ================= CALENDAR ================= -->
+
+        <div class="calendar-box">
+
+            <div class="calendar-title">
+
+                <h2>
+                    {{ current_month }}/{{ current_year }}
+                </h2>
+
+            </div>
+
+
+            <div class="calendar-grid calendar-weekdays">
+
+                <div>Monday</div>
+                <div>Tuesday</div>
+                <div>Wednesday</div>
+                <div>Thursday</div>
+                <div>Friday</div>
+                <div>Saturday</div>
+                <div>Sunday</div>
+
+            </div>
+
+
+            <div class="calendar-grid calendar-days">
+
+                {% for week in calendar %}
+
+                    {% for day in week %}
+
+                        {% if day == 0 %}
+
+                            <div class="calendar-day empty-calendar-day"></div>
+
+                        {% else %}
+
+                            <div class="calendar-day">
+
+                                <div class="calendar-day-number">
+                                    {{ day }}
+                                </div>
+
+
+                                <div class="calendar-day-bookings">
+
+                                    {% for booking in bookings %}
+
+                                        {% if booking.booking_date.day == day %}
+
+                                            <a
+                                                href="{% url 'booking_receipt' booking.booking_id %}"
+                                                class="calendar-booking calendar-status-{{ booking.status|lower }}"
+                                            >
+
+                                                <strong>
+                                                    {{ booking.booking_id }}
+                                                </strong>
+
+                                                <span>
+                                                    {{ booking.name }}
+                                                </span>
+
+                                                <small>
+                                                    {{ booking.service }}
+                                                </small>
+
+                                            </a>
+
+                                        {% endif %}
+
+                                    {% endfor %}
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= MONTH BOOKINGS TABLE ================= -->
+
+        <div class="calendar-bookings-table-box">
+
+            <div class="dashboard-section-header">
+
+                <div>
+                    <p class="small-title">Selected Month</p>
+                    <h2>All Bookings</h2>
+                </div>
+
+                <span class="calendar-total-bookings">
+                    Total: {{ bookings|length }}
+                </span>
+
+            </div>
+
+
+            <div class="dashboard-table-wrapper">
+
+                <table class="dashboard-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer</th>
+                            <th>Phone</th>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for booking in bookings %}
+
+                            <tr>
+
+                                <td>
+                                    <strong>
+                                        {{ booking.booking_id }}
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    {{ booking.name }}
+                                </td>
+
+                                <td>
+                                    {{ booking.phone }}
+                                </td>
+
+                                <td>
+                                    {{ booking.service }}
+                                </td>
+
+                                <td>
+                                    {{ booking.booking_date|date:"d M Y" }}
+                                </td>
+
+                                <td>
+
+                                    <span class="status-badge status-{{ booking.status|lower }}">
+                                        {{ booking.status }}
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <a
+                                        href="{% url 'booking_receipt' booking.booking_id %}"
+                                        class="table-action-btn"
+                                    >
+                                        View
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                        {% empty %}
+
+                            <tr>
+
+                                <td colspan="7" class="empty-table-message">
+                                    No bookings found for this month.
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

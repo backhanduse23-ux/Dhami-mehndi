@@ -1,0 +1,78 @@
+{% extends "website/base.html" %}
+
+{% block title %}
+Booking Successful | Mehndi By Dhami
+{% endblock %}
+
+{% block content %}
+
+<section class="booking-page">
+
+    <div class="booking-box">
+
+        <h1>Booking Successful</h1>
+
+        <p>
+            Your Mehndi appointment has been submitted successfully.
+        </p>
+
+        <div class="card">
+
+            <p>
+                <strong>Booking ID:</strong>
+                {{ booking.booking_id }}
+            </p>
+
+            <p>
+                <strong>Name:</strong>
+                {{ booking.name }}
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                {{ booking.email|default:"Not Provided" }}
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                {{ booking.phone }}
+            </p>
+
+            <p>
+                <strong>Service:</strong>
+                {{ booking.service }}
+            </p>
+
+            <p>
+                <strong>Booking Date:</strong>
+                {{ booking.booking_date }}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                {{ booking.status }}
+            </p>
+
+        </div>
+
+        <p>
+            Please save your Booking ID. You can use it to track your booking.
+        </p>
+
+        <div class="actions">
+
+            <a href="{% url 'track_booking' %}" class="btn">
+                Track Booking
+            </a>
+
+            <a href="{% url 'home' %}" class="btn2">
+                Back Home
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

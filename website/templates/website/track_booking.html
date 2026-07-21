@@ -1,0 +1,119 @@
+{% extends "website/base.html" %}
+
+{% block title %}Track Booking | Mehndi By Dhami{% endblock %}
+
+{% block content %}
+
+<section class="booking-page">
+
+    <div class="booking-box">
+
+        <h1>Track Your Booking</h1>
+
+        <form method="GET">
+
+            <input
+                type="text"
+                name="booking_id"
+                placeholder="Enter Booking ID (Example: BK0001)"
+                value="{{ booking_id }}"
+                required
+            >
+
+            <button type="submit" class="btn">
+                Track Booking
+            </button>
+
+        </form>
+
+        {% if booking %}
+
+            <div class="card">
+
+                <h2>Booking Details</h2>
+
+                <p>
+                    <strong>Booking ID:</strong>
+                    {{ booking.booking_id }}
+                </p>
+
+                <p>
+                    <strong>Name:</strong>
+                    {{ booking.name }}
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    {{ booking.phone }}
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    {{ booking.email|default:"Not Provided" }}
+                </p>
+
+                <p>
+                    <strong>Service:</strong>
+                    {{ booking.service }}
+                </p>
+
+                <p>
+                    <strong>Date:</strong>
+                    {{ booking.booking_date }}
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+
+                    {% if booking.status == "Pending" %}
+                        🟠 Pending
+                    {% elif booking.status == "Confirmed" %}
+                        🔵 Confirmed
+                    {% elif booking.status == "Completed" %}
+                        🟢 Completed
+                    {% elif booking.status == "Cancelled" %}
+                        🔴 Cancelled
+                    {% endif %}
+                </p>
+
+                <div class="receipt-actions">
+
+                    <a
+                        href="{% url 'booking_receipt' booking.booking_id %}"
+                        class="btn"
+                    >
+                        View Receipt
+                    </a>
+
+                    <a
+                        href="{% url 'track_booking' %}"
+                        class="btn2"
+                    >
+                        Track Another
+                    </a>
+
+                    <a
+                        href="{% url 'home' %}"
+                        class="btn2"
+                    >
+                        Back Home
+                    </a>
+
+                </div>
+
+            </div>
+
+        {% elif searched %}
+
+            <div class="error">
+                No booking found with ID
+                <strong>{{ booking_id }}</strong>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

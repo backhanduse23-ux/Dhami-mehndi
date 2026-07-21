@@ -1,0 +1,36 @@
+{% extends "website/base.html" %}
+
+{% block title %}Gallery | Mehndi By Dhami{% endblock %}
+
+{% block content %}
+
+<section class="gallery">
+
+    <p class="small-title">Our Gallery</p>
+    <h1>Latest Mehndi Designs</h1>
+
+    <div class="gallery-container">
+
+        {% for image in gallery_images %}
+
+            <div class="gallery-card">
+
+                {% if image.image %}
+                    <img src="{{ image.image.url }}" alt="{{ image.title }}">
+                {% endif %}
+
+                <h3>{{ image.title }}</h3>
+
+            </div>
+
+        {% empty %}
+
+            <p>No gallery images available.</p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,604 @@
+{% extends "website/base.html" %}
+{% load static %}
+
+{% block title %}
+Home | Mehndi By Dhami
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <p class="small-title">
+            Welcome To Mehndi By Dhami
+        </p>
+
+        <h1>
+            Make Every Celebration Beautiful With Elegant Mehndi
+        </h1>
+
+        <p>
+            Professional Bridal, Arabic, Modern and Traditional Mehndi Designs
+            for Weddings, Festivals and Special Occasions.
+        </p>
+
+        <div class="hero-btn">
+
+            <a href="{% url 'booking' %}" class="btn">
+                Book Appointment
+            </a>
+
+            <a href="{% url 'gallery' %}" class="btn2">
+                View Gallery
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-image">
+
+        <img
+            src="{% static 'website/image/hero1.jpg' %}"
+            alt="Beautiful Mehndi Design"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about" id="about">
+
+    <div class="about-image">
+
+        <img
+            src="{% static 'website/image/artist.jpg' %}"
+            alt="Professional Mehndi Artist"
+        >
+
+    </div>
+
+    <div class="about-content">
+
+        <p class="small-title">
+            About Us
+        </p>
+
+        <h2>
+            Trusted Mehndi Artist In Surat
+        </h2>
+
+        <p>
+            We create elegant bridal, engagement, festive and Arabic Mehndi
+            designs using premium-quality natural Mehndi.
+        </p>
+
+        <div class="about-box">
+
+            <div>
+
+                <h3>5+</h3>
+
+                <p>Years Experience</p>
+
+            </div>
+
+            <div>
+
+                <h3>500+</h3>
+
+                <p>Happy Clients</p>
+
+            </div>
+
+            <div>
+
+                <h3>1000+</h3>
+
+                <p>Beautiful Designs</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+
+<section class="services" id="services">
+
+    <p class="small-title">
+        Our Services
+    </p>
+
+    <h2>
+        Popular Mehndi Packages
+    </h2>
+
+    <p class="section-description">
+        Choose a beautiful Mehndi package for your wedding,
+        festival or special occasion.
+    </p>
+
+    <div class="service-container">
+
+        {% for service in services|slice:":3" %}
+
+            <article class="service-card">
+
+                {% if service.image %}
+
+                    <img
+                        src="{{ service.image.url }}"
+                        alt="{{ service.title }}"
+                        loading="lazy"
+                    >
+
+                {% else %}
+
+                    <img
+                        src="{% static 'website/image/hero1.jpg' %}"
+                        alt="{{ service.title }}"
+                        loading="lazy"
+                    >
+
+                {% endif %}
+
+                <h3>
+                    {{ service.title }}
+                </h3>
+
+                <h4>
+                    ₹ {{ service.price }}
+                </h4>
+
+                <p>
+                    {{ service.description|truncatewords:20 }}
+                </p>
+
+                <a
+                    href="{% url 'booking' %}?service={{ service.title|urlencode }}"
+                    class="btn"
+                >
+                    Book Now
+                </a>
+
+            </article>
+
+        {% empty %}
+
+            <p class="empty-message">
+                No services are available right now.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="section-button">
+
+        <a href="{% url 'services' %}" class="btn2">
+            View All Services
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= GALLERY ================= -->
+
+<section class="gallery" id="gallery">
+
+    <p class="small-title">
+        Gallery
+    </p>
+
+    <h2>
+        Latest Mehndi Designs
+    </h2>
+
+    <div class="gallery-container">
+
+        {% for image in gallery_images|slice:":6" %}
+
+            <div class="gallery-card">
+
+                {% if image.image %}
+
+                    <img
+                        src="{{ image.image.url }}"
+                        alt="{{ image.title|default:'Mehndi Design' }}"
+                        loading="lazy"
+                    >
+
+                {% endif %}
+
+            </div>
+
+        {% empty %}
+
+            <p class="empty-message">
+                No gallery images are available right now.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="section-button">
+
+        <a href="{% url 'gallery' %}" class="btn2">
+            View Full Gallery
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WHY CHOOSE US ================= -->
+
+<section class="why">
+
+    <p class="small-title">
+        Why Choose Us
+    </p>
+
+    <h2>
+        Why Clients Love Mehndi By Dhami
+    </h2>
+
+    <div class="why-container">
+
+        <div class="why-card">
+
+            <i class="fa-solid fa-leaf"></i>
+
+            <h3>
+                Natural Mehndi
+            </h3>
+
+            <p>
+                Chemical-free and premium-quality natural Mehndi.
+            </p>
+
+        </div>
+
+        <div class="why-card">
+
+            <i class="fa-solid fa-heart"></i>
+
+            <h3>
+                Unique Designs
+            </h3>
+
+            <p>
+                Beautiful modern and traditional Mehndi designs.
+            </p>
+
+        </div>
+
+        <div class="why-card">
+
+            <i class="fa-solid fa-award"></i>
+
+            <h3>
+                Professional Artist
+            </h3>
+
+            <p>
+                Professional service with years of experience.
+            </p>
+
+        </div>
+
+        <div class="why-card">
+
+            <i class="fa-solid fa-clock"></i>
+
+            <h3>
+                On-Time Service
+            </h3>
+
+            <p>
+                Fast, reliable and well-managed booking service.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DYNAMIC REVIEWS ================= -->
+
+<section class="review" id="reviews">
+
+    <p class="small-title">
+        Client Reviews
+    </p>
+
+    <h2>
+        What Our Happy Clients Say
+    </h2>
+
+    <div class="review-container">
+
+        {% for review in reviews|slice:":3" %}
+
+            <article class="review-card">
+
+                <div class="review-stars">
+
+                    {% for star in "12345" %}
+
+                        {% if forloop.counter <= review.rating %}
+
+                            <span class="filled-star">★</span>
+
+                        {% else %}
+
+                            <span class="empty-star">★</span>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
+
+                <p class="review-message">
+                    “{{ review.message }}”
+                </p>
+
+                <h3>
+                    {{ review.name }}
+                </h3>
+
+                <small>
+                    {{ review.created_at|date:"d M Y" }}
+                </small>
+
+            </article>
+
+        {% empty %}
+
+            <p class="empty-message">
+                No reviews are available yet. Be the first to submit a review.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- ================= REVIEW FORM ================= -->
+
+<section class="review-form-section">
+
+    <div class="review-form-container">
+
+        <div class="review-form-heading">
+
+            <p class="small-title">
+                Share Your Experience
+            </p>
+
+            <h2>
+                Leave A Review
+            </h2>
+
+            <p>
+                Your review will appear on the website after admin approval.
+            </p>
+
+        </div>
+
+        {% if review_success %}
+
+            <div class="success-message">
+
+                Thank you! Your review has been submitted successfully.
+                It will appear after admin approval.
+
+            </div>
+
+        {% endif %}
+
+        {% if review_error %}
+
+            <div class="error-message">
+
+                {{ review_error }}
+
+            </div>
+
+        {% endif %}
+
+        <form
+            method="POST"
+            action="{% url 'home' %}#reviews"
+            class="review-form"
+        >
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="form_type"
+                value="review"
+            >
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="review_name">
+                        Your Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="review_name"
+                        name="review_name"
+                        placeholder="Enter your name"
+                        value="{{ review_data.review_name|default:'' }}"
+                        minlength="2"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="review_email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="review_email"
+                        name="review_email"
+                        placeholder="Enter your email"
+                        value="{{ review_data.review_email|default:'' }}"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="rating">
+                    Your Rating
+                </label>
+
+                <select
+                    id="rating"
+                    name="rating"
+                    required
+                >
+
+                    <option value="">
+                        Select Rating
+                    </option>
+
+<option value="4">★★★★☆ - Very Good</option>
+<option value="3">★★★☆☆ - Good</option>
+<option value="2">★★☆☆☆ - Average</option>
+<option value="1">★☆☆☆☆ - Poor</option>
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="review_message">
+                    Review Message
+                </label>
+
+                <textarea
+                    id="review_message"
+                    name="review_message"
+                    rows="5"
+                    placeholder="Write your experience..."
+                    minlength="5"
+                    required
+                >{{ review_data.review_message|default:'' }}</textarea>
+
+            </div>
+
+            <button type="submit" class="btn">
+                Submit Review
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BOOKING CTA ================= -->
+
+<section class="cta">
+
+    <h2>
+        Ready To Book Your Mehndi?
+    </h2>
+
+    <p>
+        Reserve your preferred date today and make your special
+        celebration more beautiful.
+    </p>
+
+    <a href="{% url 'booking' %}" class="btn">
+        Book Appointment
+    </a>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section class="contact-home" id="contact">
+
+    <div class="contact-home-details">
+
+        <p class="small-title">
+            Contact Us
+        </p>
+
+        <h2>
+            Get In Touch
+        </h2>
+
+        <p>
+            <i class="fa-solid fa-phone"></i>
+            +91 9999999999
+        </p>
+
+        <p>
+            <i class="fa-solid fa-envelope"></i>
+            info@mehndibydhami.com
+        </p>
+
+        <p>
+            <i class="fa-solid fa-location-dot"></i>
+            Surat, Gujarat
+        </p>
+
+        <a href="{% url 'contact' %}" class="btn">
+            Contact Us
+        </a>
+
+    </div>
+
+    <div class="contact-map">
+
+        <iframe
+            src="https://www.google.com/maps?q=Surat,Gujarat&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mehndi By Dhami Location"
+        >
+        </iframe>
+
+    </div>
+
+</section>
+
+{% endblock %}

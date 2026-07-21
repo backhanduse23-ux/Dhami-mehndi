@@ -1,0 +1,42 @@
+{% extends "website/base.html" %}
+
+{% block title %}Services | Mehndi By Dhami{% endblock %}
+
+{% block content %}
+
+<section class="services">
+
+    <p class="small-title">Our Services</p>
+    <h1>Mehndi Services</h1>
+
+    <div class="service-container">
+
+        {% for service in services %}
+
+            <div class="service-card">
+
+                {% if service.image %}
+                    <img src="{{ service.image.url }}" alt="{{ service.title }}">
+                {% endif %}
+
+                <h3>{{ service.title }}</h3>
+                <h4>₹ {{ service.price }}</h4>
+                <p>{{ service.description }}</p>
+
+                <a href="{% url 'booking' %}" class="btn">
+                    Book Now
+                </a>
+
+            </div>
+
+        {% empty %}
+
+            <p>No services available.</p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}
